@@ -1,43 +1,46 @@
 package com.example.learninghilt.ui
 
 import androidx.compose.ui.graphics.Color
+import com.example.learninghilt.MainActivity
 import dagger.Component
 import dagger.Module
 import dagger.Provides
 
 @Component(modules = [AppModule::class])
-interface AppInterface {
-    val car : CarStats
+interface AppComponent{
+    fun inject(activity: MainActivity) // Для injecta зависимостей
+
+    val comp: ComputerConfig
 }
 
 @Module
-object AppModule {
+object AppModule{
 
     @Provides
-    fun provideCar(
-        markCar: MarkCar,
-        colorCar: ColorCar,
-        kmCar: KmCar
-    ) : CarStats {
-        return CarStats(
-            markCar = MarkCar(),
-            colorCar = ColorCar(),
-            kmCar = KmCar()
+    fun provideComputerConfig(
+        videoCardInfo: VideoCardInfo,
+        processorInfo: ProcessorInfo,
+        gpuInfo: GPUInfo
+    ) : ComputerConfig{
+        return ComputerConfig(
+            videoCard = videoCardInfo,
+            processorInfo = processorInfo,
+            gpuInfo = gpuInfo
         )
     }
 
     @Provides
-    fun provideMarkCar() : MarkCar{
-        return MarkCar()
+    fun provideVideoCard() : VideoCardInfo{
+        return VideoCardInfo()
     }
 
     @Provides
-    fun provideColorCar() : ColorCar{
-        return ColorCar()
+    fun provideProcessorInfo() : ProcessorInfo{
+        return ProcessorInfo()
     }
 
     @Provides
-    fun provideKmCar() : KmCar{
-        return KmCar()
+    fun provideGPUInfo() : GPUInfo{
+        return GPUInfo()
     }
 }

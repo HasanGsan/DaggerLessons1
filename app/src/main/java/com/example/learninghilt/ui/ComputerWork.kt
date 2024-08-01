@@ -1,23 +1,19 @@
 package com.example.learninghilt.ui
 
-interface IntConverter{
-    fun toInt(): Int
+class VideoCardInfo{
+    override fun toString() = "RTX3050"
 }
 
-class MarkCar(){
-    override fun toString() = "Lada"
+class ProcessorInfo{
+    override fun toString() = "Intel Core I5"
 }
 
-class ColorCar(){
-    override fun toString() = "White"
+class GPUInfo{
+    override fun toString() = "16GB"
 }
 
-class KmCar() : IntConverter{
-    override fun toInt() = 10000
-}
-
-data class CarStats(
-    val markCar: MarkCar,
-    val colorCar: ColorCar,
-    val kmCar: KmCar
+data class ComputerConfig(
+    val videoCard: VideoCardInfo,
+    val processorInfo: ProcessorInfo,
+    val gpuInfo: GPUInfo
 )
